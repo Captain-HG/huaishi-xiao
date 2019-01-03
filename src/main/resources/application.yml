@@ -1,0 +1,8 @@
+#\u67E5\u770Bspringboot\u5F00\u542F\u4E86\u54EA\u4E9B\u914D\u7F6E
+debug: true
+
+
+spring:
+  profiles:
+    active: dev
+
