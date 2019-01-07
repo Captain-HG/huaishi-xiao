@@ -24,20 +24,25 @@
 <![endif]-->
 <!--/meta 作为公共模版分离出去-->
 
-<title>添加用户 - H-ui.admin v3.1</title>
+<title>添加用户 </title>
 <meta name="keywords" content="H-ui.admin v3.1,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
 <meta name="description" content="H-ui.admin v3.1，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
 </head>
 <body>
 <article class="page-container">
-	<form th:action="registerUserSure" method="post" class="form form-horizontal" id="form-member-add">
+	<form th:action="admin-user-add" method="post" class="form form-horizontal" id="form-member-add">
 		<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户名：</label>
 		<div class="formControls col-xs-8 col-sm-9">
 			<input type="text" class="input-text" value="" placeholder="" id="nameId" name="name">
 		</div>
 	</div>
-
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>账号：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" placeholder="132254655" name="account" id="accountId"  onchange="ajaxRegister()" />
+			</div>
+		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>密码：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -51,7 +56,16 @@
 				<input type="password" class="input-text" value="" placeholder="" id="rePasswordId" name="rePassword">
 			</div>
 		</div>
-
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>账号类别：</label>
+			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
+				<select name="roleId" class="select">
+					<option th:each="role,interStart:${roleList}" th:value="${role.rid}" th:text="${role.name}"></option>
+					<!--<option value="enterprise" th:text="科技企业" th:selected="${userInfo.userType eq 'enterprise'}"></option>-->
+					<!--<option value="admin" th:text="管理员" th:selected="${userInfo.userType eq 'admin'}"></option>-->
+				</select>
+				</span> </div>
+		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>状态：</label>
 			<div class="formControls col-xs-8 col-sm-9 skin-minimal">
@@ -89,9 +103,9 @@
 <script type="text/javascript">
 	 var fys="error";
     function ajaxRegister(){
-        var account = $("#mobile").val();
+        var account = $("#accountId").val();
         $.ajax({
-            url : "ajaxRegister",
+            url : "admin-user-accountAjaxRegister",
             data :{"account" : account},
             success: function(str) {
                 if ("true" != str) {
@@ -134,11 +148,11 @@ $(function(){
                 required:true,
                 minlength:6,
                 maxlength:16,
-                equalTo: "#password"
-			},
-            uAccount:{
+                equalTo: "#passwordId"
+            },
+            account :{
                 required:true,
-                isMobile:true
+                number:true
             },
 
         },
@@ -149,7 +163,8 @@ $(function(){
             if (fys=="true") {
                 $("form").ajaxSubmit(function (data) {
                     var index = parent.layer.getFrameIndex(window.name);
-                    parent.$('#btn-refresh').click();
+                    // parent.$('#btn-refresh').click();
+                    parent.location.reload();
                     parent.layer.close(index);
                 });
             }

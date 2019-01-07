@@ -56,7 +56,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int addUser(User user) {
-        user.setState("0");
         user.setUid(UUID.UU32());
         user.setCtime((long) DateKit.getCurrentUnixTime());
         return userMapper.insert(user);
@@ -68,13 +67,24 @@ public class UserServiceImpl implements UserService {
         return userMapper.delete(user);
     }
 
+
+
     @Override
-    public String ifAccountUse(String account) {
-        User user = userMapper.selectByAccount(account);
-        if (user!=null){
-            return "该账号已被注册";
-        }
-        return "true";
+    public int updateUserAndRole(User user, String roleId) {
+        System.out.println("userService:"+roleId);
+        updateUser(user);
+        return userRoleService.update(user.getUid(),roleId);
+    }
+
+    @Override
+    public int addUserAndRole(User user, String roleId) {
+        addUser(user);
+        return userRoleService.addUserRole(user.getUid(),roleId);
+    }
+
+    @Override
+    public User selectByAccount(String account) {
+        return  userMapper.selectByAccount(account);
     }
 //
 //    @Override

@@ -1,6 +1,8 @@
 package com.qilinxx.huaishixiao.controller.admin;
 
+import com.qilinxx.huaishixiao.entity.Role;
 import com.qilinxx.huaishixiao.entity.User;
+import com.qilinxx.huaishixiao.service.RoleService;
 import com.qilinxx.huaishixiao.service.UserService;
 import com.qilinxx.huaishixiao.utils.Commons;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,8 @@ import java.util.List;
 public class UserController {
     @Autowired
     UserService userService;
+    @Autowired
+    RoleService roleService;
     /**
      * 用户列表
      * @return
@@ -35,15 +39,24 @@ public class UserController {
     @RequestMapping("admin-user-update.html")
     public String userUpdateUI(Model model,String id){
         User user = userService.selectById(id);
+        List<Role> roleList = roleService.selectAll();
         model.addAttribute("user",user);
+        model.addAttribute("roleList",roleList);
         model.addAttribute("commons",new Commons());
         return "admin/user/update";
     }
+
+    /**
+     * 更新实现
+     * @param user
+     * @return
+     */
     @RequestMapping("admin-user-update")
     @ResponseBody
-    public  int  userUpdate(User user){
+    public  int  userUpdate(User user,String roleId){
         System.out.println(user);
-        int i = userService.updateUser(user);
+        System.out.println("权限id:"+roleId);
+        int i = userService.updateUserAndRole(user,roleId);
         System.out.println("更新返回："+i);
         return i;
     }
@@ -77,7 +90,9 @@ public class UserController {
      * @return
      */
     @RequestMapping("admin-user-add.html")
-    public String addUserUI(){
+    public String addUserUI(Model model){
+        List<Role> roleList = roleService.selectAll();
+        model.addAttribute("roleList",roleList);
         return "admin/user/add";
     }
 
@@ -86,10 +101,11 @@ public class UserController {
      * @param user 用户
      * @return
      */
-    @RequestMapping("admin-user-user-add")
+    @RequestMapping("admin-user-add")
     @ResponseBody
-    public int addUser(User user){
-        return userService.addUser(user);
+    public int addUser(User user,String roleId){
+
+        return userService.addUserAndRole(user,roleId);
     }
 
     /**
@@ -110,14 +126,25 @@ public class UserController {
      */
     @RequestMapping("admin-user-accountAjaxRegister")
     @ResponseBody
-    public String userAjaxRegister(String account,String id) {
-        System.out.println("id和账号："+account+id);
-        User user = userService.selectById(id);
-        if (account.equals(user.getAccount())) {
-            return "true";
-        } else {
-
-            return userService.ifAccountUse(account);
+    public String userAjaxRegister(String account,String uid) {
+        String str="";
+        User user = userService.selectByAccount(account);
+        if (user==null){
+            str="true";
         }
+        else{
+            if (uid!=null){
+                User userById = userService.selectById(uid);
+                if (userById.getAccount().equals(account)){
+                    str="true";
+                }else {
+                    str="error";
+                }
+            }
+            else {
+                str="error";
+            }
+        }
+        return str;
     }
 }

@@ -79,5 +79,7 @@
     -->
     id, uid, rid
   </sql>
-
+  <select id="selectByUid" resultMap="BaseResultMap">
+    select * from user_role where uid=#{uid}
+  </select>
 </mapper>

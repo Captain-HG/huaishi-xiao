@@ -7,4 +7,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface UserRoleMapper extends IBaseMapper<UserRole> {
+    /** 根据用户id查询对象*/
+    UserRole selectByUid(String uid);
 }

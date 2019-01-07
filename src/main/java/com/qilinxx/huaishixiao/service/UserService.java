@@ -20,8 +20,12 @@ public interface UserService {
     int addUser(User user);
     /** 根据id删除用户*/
     int deleteUser(String id);
-    /** 判断账号是否存在*/
-    String ifAccountUse(String account);
+    /** 更新用户和所属角色*/
+    int updateUserAndRole(User user, String roleId);
+    /** 增加角色*/
+    int addUserAndRole(User user, String roleId);
+    /** 根据账号查询user*/
+    User selectByAccount(String account);
 //    /** 查询封装过后的user*/
 //    List<UserVo> selectUserVoAll();
 }

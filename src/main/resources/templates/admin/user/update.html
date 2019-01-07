@@ -63,16 +63,16 @@
 					<!--<input type="text" class="input-text" placeholder="" name="userType" id="userTypeId" th:value="${userInfo.userType}" />-->
 				<!--</div>-->
 			<!--</div>-->
-			<!--<div class="row cl">-->
-				<!--<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>账号类别：</label>-->
-				<!--<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">-->
-				<!--<select name="userType" class="select">-->
-					<!--<option value="provider" th:text="提供商" th:selected="${userInfo.userType eq 'provider'}"></option>-->
+			<div class="row cl">
+				<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>账号类别：</label>
+				<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
+				<select name="roleId" class="select">
+					<option th:each="role,interStart:${roleList}" th:value="${role.rid}" th:text="${role.name}"></option>
 					<!--<option value="enterprise" th:text="科技企业" th:selected="${userInfo.userType eq 'enterprise'}"></option>-->
                     <!--<option value="admin" th:text="管理员" th:selected="${userInfo.userType eq 'admin'}"></option>-->
-				<!--</select>-->
-				<!--</span> </div>-->
-			<!--</div>-->
+				</select>
+				</span> </div>
+			</div>
 			<div><input type="text" th:value="${user.uid}" name="uid" id="uidId" hidden="true"></div>
 			<div class="row cl">
 				<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
@@ -104,10 +104,10 @@
     var fys="error";
     function ajaxRegister(){
         var account = $("#accountId").val();
-        var id = $("#uidId").val();
+        var uid = $("#uidId").val();
         $.ajax({
             url : "admin-user-accountAjaxRegister",
-            data :{"account" : account,"id":id},
+            data :{"account":account,"uid":uid},
             success: function(str) {
                 if ("true" == str) {
                     fys="true";
