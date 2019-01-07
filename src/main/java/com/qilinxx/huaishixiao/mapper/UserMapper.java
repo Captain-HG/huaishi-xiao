@@ -7,4 +7,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper extends IBaseMapper<User> {
+     /** 根据账号查询用户*/
+    User selectByAccount(String account);
 }

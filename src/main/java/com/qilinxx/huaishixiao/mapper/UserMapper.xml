@@ -85,5 +85,7 @@
     -->
     uid, name, password, type, account, ctime, utime, state, remark
   </sql>
-
+  <select id="selectByAccount" resultMap="BaseResultMap">
+    select * from user where account=#{account}
+  </select>
 </mapper>
