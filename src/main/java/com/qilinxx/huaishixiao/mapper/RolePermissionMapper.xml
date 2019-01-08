@@ -79,5 +79,7 @@
     -->
     id, rid, pid
   </sql>
-
+<delete id="deleteByRId">
+  delete from role_permission where rid=#{rid}
+</delete>
 </mapper>

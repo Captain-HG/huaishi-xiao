@@ -24,48 +24,26 @@
 <![endif]-->
 <!--/meta 作为公共模版分离出去-->
 
-<title>添加用户 </title>
-<meta name="keywords" content="H-ui.admin v3.1,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
-<meta name="description" content="H-ui.admin v3.1，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
+<title>添加权限 </title>
+
 </head>
 <body>
 <article class="page-container">
-	<form th:action="admin-user-add" method="post" class="form form-horizontal" id="form-member-add">
+	<form th:action="admin-permission-add" method="post" class="form form-horizontal" id="form-member-add">
 		<div class="row cl">
-		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户名：</label>
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>权限名：</label>
 		<div class="formControls col-xs-8 col-sm-9">
 			<input type="text" class="input-text" value="" placeholder="" id="nameId" name="name">
 		</div>
 	</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>账号：</label>
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>简要描述：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" placeholder="132254655" name="account" id="accountId"  onchange="ajaxRegister()" />
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>密码：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="password" class="input-text" value="" placeholder="" id="passwordId" name="password">
+				<input type="text" class="input-text" value="" placeholder="" id="descriptionId" name="description">
 			</div>
 		</div>
 
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>确认密码：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="password" class="input-text" value="" placeholder="" id="rePasswordId" name="rePassword">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>账号类别：</label>
-			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select name="roleId" class="select">
-					<option th:each="role,interStart:${roleList}" th:value="${role.rid}" th:text="${role.name}"></option>
-					<!--<option value="enterprise" th:text="科技企业" th:selected="${userInfo.userType eq 'enterprise'}"></option>-->
-					<!--<option value="admin" th:text="管理员" th:selected="${userInfo.userType eq 'admin'}"></option>-->
-				</select>
-				</span> </div>
-		</div>
+
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>状态：</label>
 			<div class="formControls col-xs-8 col-sm-9 skin-minimal">
@@ -101,30 +79,6 @@
 <script type="text/javascript" src="lib/jquery.validation/1.14.0/validate-methods.js"></script> 
 <script type="text/javascript" src="lib/jquery.validation/1.14.0/messages_zh.js"></script>
 <script type="text/javascript">
-	 var fys="error";
-    function ajaxRegister(){
-        var account = $("#accountId").val();
-        $.ajax({
-            url : "admin-user-accountAjaxRegister",
-            data :{"account" : account},
-            success: function(str) {
-                if ("true" != str) {
-                    //帐号已经存在
-                  //  $("#accountId").append("<span> 帐号已经存在。请使用其它帐号！ </span>");
-                    alert("帐号已经存在。请使用其它帐号！");
-                    //定焦
-					fys="error";
-                    $("#mobile").focus();
-                }
-                else {
-
-                    fys="true";
-                    //账号未存在
-                   // $("#accountId span").remove();
-                }
-            }
-        });
-    }
 $(function(){
 	$('.skin-minimal input').iCheck({
 		checkboxClass: 'icheckbox-blue',
@@ -139,40 +93,24 @@ $(function(){
                 minlength:2,
                 maxlength:16
             },
-            password:{
+            description:{
                 required:true,
-                minlength:6,
+                minlength:2,
                 maxlength:16
             },
-            rePassword:{
-                required:true,
-                minlength:6,
-                maxlength:16,
-                equalTo: "#passwordId"
-            },
-            account :{
-                required:true,
-                number:true
-            },
-
         },
 		onkeyup:false,
 		focusCleanup:true,
 		success:"valid",
 		submitHandler:function(form){
-            ajaxRegister();
-            if (fys=="true") {
+
                 $("form").ajaxSubmit(function (data) {
                     var index = parent.layer.getFrameIndex(window.name);
                     // parent.$('#btn-refresh').click();
                     parent.location.reload();
                     parent.layer.close(index);
                 });
-            }
-            else {
-                alert("手机号已被注册");
-                return false;
-			}
+
 		}
 	});
 });

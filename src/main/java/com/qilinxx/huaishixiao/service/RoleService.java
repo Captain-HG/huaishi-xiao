@@ -10,9 +10,13 @@ public interface RoleService {
     /** 主键查询*/
     Role selectById(String id);
     /** 更新*/
-    int updaterole(Role role);
+    int updateRole(Role role);
     /** 增加角色*/
     int addRole(Role role);
     /** 删除角色*/
     int deleteRole(String id);
+    /** 更新*/
+    int updateRoleAndPermission(Role role, String[] permissionValue);
+    /** 增加*/
+    int addRoleAndPermission(Role role, String[] permissionValue);
 }

@@ -7,4 +7,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface RolePermissionMapper extends IBaseMapper<RolePermission> {
+    /** 根据角色id删除*/
+    void deleteByRId(String rid);
 }

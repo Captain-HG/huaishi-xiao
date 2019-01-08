@@ -19,41 +19,34 @@
 <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
-<title>用户管理</title>
+<title>角色管理</title>
 </head>
 <body>
 
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> <a th:href="admin-index-show">首页 </a> <span class="c-gray en">&gt;</span> 用户管理 <a id="btn-refresh" class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> <a th:href="admin-index-show">首页 </a> <span class="c-gray en">&gt;</span> 角色管理 <a id="btn-refresh" class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
 
-	<div class="cl pd-5 bg-1 bk-gray mt-20"><a href="javascript:;" onclick="member_add('添加用户','admin-user-add.html','','510')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加用户</a> <span class="l"> </span> <span class="r">共有用户：<strong th:text="${userList.size()}"></strong> 条</span> </div>
+	<div class="cl pd-5 bg-1 bk-gray mt-20"><a href="javascript:;" onclick="member_add('添加角色','admin-role-add.html','','510')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加角色</a> <span class="l"> </span> <span class="r">共有用户：<strong th:text="${roleList.size()}"></strong> 条</span> </div>
 	<div class="mt-20">
 	<table class="table table-border table-bordered table-hover table-bg table-sort">
 		<thead>
 			<tr class="text-c">
 				<th width="25"><input type="checkbox" name="" value=""></th>
 				<th width="50">ID</th>
-				<th width="100">姓名</th>
-				<th width="90">账号</th>
+				<th width="100">角色名</th>
 				<th  width="100">创建时间</th>
-				<th width="70">状态</th>
 				<th width="90">操作</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr class="text-c" th:each="user,interStart:${userList}">
+			<tr class="text-c" th:each="role,interStart:${roleList}">
 				<td><input type="checkbox" value="{}" name=""></td>
 				<td th:text="${interStart.index+1}">1</td>
-				<td th:text="${user.name}">1</td>
-				<td th:text="${user.account}">1</td>
-				<td th:text="${commons.fmtdate(user.ctime)}">1</td>
-				<td class="td-status" th:if="${user.state eq '0'}"><span class="label label-default radius">不可用</span></td>
-				<td class="td-status" th:if="${user.state eq '1'}"><span class="label label-primary radius">可用</span></td>
+				<td th:text="${role.name}">1</td>
+				<td th:text="${commons.fmtdate(role.ctime)}">1</td>
 				<td class="td-manage">
-					<a th:if="${user.state eq '1'}" style="text-decoration:none" th:onclick="'javascript:member_NoExamination('+this+',\''+${user.uid}+'\')'" href="javascript:;" title="设置不可用"><i class="Hui-iconfont">&#xe653;</i></a>
-					<a th:if="${user.state eq '0'}"  style="text-decoration:none" th:onclick="'javascript:member_start('+this+',\''+${user.uid}+'\')'" href="javascript:;" title="设置可用"><i class="Hui-iconfont">&#xe6e1;</i></a>
-					   <a style="text-decoration:none" class="ml-5 " th:onclick="'javascript:member_edit(\''+用户编辑+'\',\''+admin-user-update.html+'\',\''+${user.uid}+'\',\''+''+'\',\''+510+'\')'"  href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-                    <a style="text-decoration:none" class="ml-5" th:onClick="'javascript:member_del('+this+',\''+${user.uid}+'\')'" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
+					<a style="text-decoration:none" class="ml-5 " th:onclick="'javascript:member_edit(\''+角色编辑+'\',\''+admin-role-update.html+'\',\''+${role.rid}+'\',\''+''+'\',\''+510+'\')'"  href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
+                    <a style="text-decoration:none" class="ml-5" th:onClick="'javascript:member_del('+this+',\''+${role.rid}+'\')'" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
 				</td>
             </tr>
 		</tbody>
@@ -82,7 +75,7 @@ $(function(){
 		"bStateSave": true,//状态保存
 		"aoColumnDefs": [
 		  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-		  {"orderable":false,"aTargets":[0,6]}// 制定列不参与排序
+		  {"orderable":false,"aTargets":[0,4]}// 制定列不参与排序
 		]
 	});
 });
@@ -165,7 +158,7 @@ function member_del(obj,id){
 	layer.confirm('确认要删除吗？',function(index){
 		$.ajax({
 			type: 'POST',
-			url: 'admin-user-del?id='+id,
+			url: 'admin-role-del?id='+id,
 			dataType: 'json',
 			success: function(data){
 				$(obj).parents("tr").remove();
