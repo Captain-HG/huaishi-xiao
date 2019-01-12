@@ -11,5 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Mapper
 public interface FileMapper extends IBaseMapper<File> {
-    File selectByNameTest(String name);
-  }
+    /** 根据项目id查询*/
+    List<File> selectAllByPId(String pId);
+}

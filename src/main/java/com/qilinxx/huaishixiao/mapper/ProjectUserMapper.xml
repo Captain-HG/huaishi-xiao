@@ -81,5 +81,10 @@
     -->
     id, project_id, project_name, user_id, state
   </sql>
-
+<select id="selectAllByPId" resultMap="BaseResultMap">
+  select * from project_user where project_id=#{pid}
+</select>
+  <delete id="deleteByPId">
+    delete from project_user where project_id=#{pid}
+  </delete>
 </mapper>

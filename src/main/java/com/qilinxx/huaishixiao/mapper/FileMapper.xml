@@ -104,7 +104,7 @@
     -->
     text
   </sql>
- <select id="selectByNameTest" resultMap="BaseResultMap">
-   select * from file where filename=#{name}
+ <select id="selectAllByPId" resultMap="BaseResultMap">
+   select * from file where project_id=#{pId}
  </select>
 </mapper>
