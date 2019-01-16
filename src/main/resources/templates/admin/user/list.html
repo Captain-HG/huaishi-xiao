@@ -44,7 +44,10 @@
 			<tr class="text-c" th:each="user,interStart:${userList}">
 				<td><input type="checkbox" value="{}" name=""></td>
 				<td th:text="${interStart.index+1}">1</td>
-				<td th:text="${user.name}">1</td>
+				<!--<td th:text="${user.name}">1</td>-->
+				<td><u th:text="${user.name}" style="cursor:pointer" class="text-primary"
+					   th:onclick="'javascript:member_show(\''+${user.name}+'\',\''+user-show.html+'\',\''+${user.uid}+'\',\''+360+'\',\''+400+'\');'">张三</u></td>
+
 				<td th:text="${user.account}">1</td>
 				<td th:text="${commons.fmtdate(user.ctime)}">1</td>
 				<td class="td-status" th:if="${user.state eq '0'}"><span class="label label-default radius">不可用</span></td>

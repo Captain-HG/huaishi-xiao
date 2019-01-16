@@ -19,6 +19,16 @@ public class UserController {
     UserService userService;
     @Autowired
     RoleService roleService;
+
+
+    @RequestMapping("user-show.html")
+    public String member_show(String uid,Model model){
+        System.out.println(uid);
+        User student= userService.selectById(uid);
+        model.addAttribute("user",student);
+        model.addAttribute("commons",new Commons());
+        return "user/show";
+    }
     /**
      * 用户列表
      * @return

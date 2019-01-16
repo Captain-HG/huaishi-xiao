@@ -8,11 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminController {
     /**
      * 管理员首页跳转
-     * @param model
-     * @return
      */
     @RequestMapping("admin-index")
-    public String adminIndex(Model model){
+    public String adminIndex(){
         return "admin/index";
+    }
+
+    @RequestMapping("admin-index-show")
+    public String index(){
+        return "admin/welcome";
     }
 }

@@ -1,9 +1,6 @@
 package com.qilinxx.huaishixiao.entity;
 
-import javax.persistence.Id;
-
 public class User {
-    @Id
     private String uid;
 
     private String name;
@@ -26,7 +23,7 @@ public class User {
 
     private String des;
 
-    private String belong;
+    private String from;
 
     private Integer age;
 
@@ -118,12 +115,12 @@ public class User {
         this.des = des == null ? null : des.trim();
     }
 
-    public String getBelong() {
-        return belong;
+    public String getFrom() {
+        return from;
     }
 
-    public void setBelong(String belong) {
-        this.belong = belong == null ? null : belong.trim();
+    public void setFrom(String from) {
+        this.from = from == null ? null : from.trim();
     }
 
     public Integer getAge() {

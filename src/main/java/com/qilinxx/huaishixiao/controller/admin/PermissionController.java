@@ -38,7 +38,6 @@ public class PermissionController {
     public String permissionUpdateUI(Model model,String id){
         Permission permission = permissionService.selectById(id);
         model.addAttribute("permission",permission);
-  
         return "admin/permission/update";
     }
 
@@ -86,7 +85,7 @@ public class PermissionController {
      * @return
      */
     @RequestMapping("admin-permission-add.html")
-    public String addpermissionUI(Model model){
+    public String addPermissionUI(Model model){
         return "admin/permission/add";
     }
 
@@ -97,7 +96,7 @@ public class PermissionController {
      */
     @RequestMapping("admin-permission-add")
     @ResponseBody
-    public int addpermission(Permission permission,String roleId){
+    public int addPermission(Permission permission,String roleId){
 
         return permissionService.addPermission(permission);
     }
@@ -109,7 +108,7 @@ public class PermissionController {
      */
     @RequestMapping("admin-permission-del")
     @ResponseBody
-    public int delpermission(String id) {
+    public int delPermission(String id) {
         return permissionService.deletePermission(id);
     }
 
