@@ -1,12 +1,15 @@
 package com.qilinxx.huaishixiao.service.impl;
 
 import com.qilinxx.huaishixiao.entity.UserRole;
+import com.qilinxx.huaishixiao.entity.UserRoleExample;
 import com.qilinxx.huaishixiao.mapper.UserRoleMapper;
 import com.qilinxx.huaishixiao.service.RoleService;
 import com.qilinxx.huaishixiao.service.UserRoleService;
 import com.qilinxx.huaishixiao.utils.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserRoleServiceImpl implements UserRoleService {
@@ -36,5 +39,13 @@ public class UserRoleServiceImpl implements UserRoleService {
         userRole.setRid(roleId);
         userRole.setUid(uid);
         return userRoleMapper.insert(userRole);
+    }
+
+    @Override
+    public List<UserRole> findRidByUid(String uid) {
+        UserRoleExample example=new UserRoleExample();
+        example.createCriteria().andUidEqualTo(uid);
+        List<UserRole> userRoleList = userRoleMapper.selectByExample(example);
+        return userRoleList;
     }
 }

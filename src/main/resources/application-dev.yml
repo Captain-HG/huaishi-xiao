@@ -38,6 +38,10 @@ spring:
       max-total: 5
       max-wait-millis: 200
 
+
+logging.level.org.springframework.boot.autoconfigure: ERROR
+
+
 mapper:
     mappers: tk.mybatis.mapper.common.Mapper
     identity: select sys_guid() from dual
