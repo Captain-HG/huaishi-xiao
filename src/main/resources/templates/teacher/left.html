@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="teacher/css/style.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" src="teacher/js/jquery.js"></script>
+
+<script type="text/javascript">
+$(function(){	
+	//导航切换
+	$(".menuson li").click(function(){
+		$(".menuson li.active").removeClass("active")
+		$(this).addClass("active");
+	});
+	
+	$('.title').click(function(){
+		var $ul = $(this).next('ul');
+		$('dd').find('ul').slideUp();
+		if($ul.is(':visible')){
+			$(this).next('ul').slideUp();
+		}else{
+			$(this).next('ul').slideDown();
+		}
+	});
+})	
+</script>
+
+
+</head>
+
+<body style="background:#f0f9fd;">
+	<div class="lefttop"><span></span>功能面板</div>
+    
+    <dl class="leftmenu">
+        
+    <dd>
+    <div class="title">
+    <span><img src="teacher/images/leftico01.png" /></span>管理信息
+    </div>
+    	<ul class="menuson">
+        <li class="active"><cite></cite><a href="index" target="rightFrame">系统首页</a><i></i></li>
+        <li><cite></cite><a href="info" target="rightFrame">个人信息</a><i></i></li>
+        <li><cite></cite><a href="info-change" target="rightFrame">修改信息</a><i></i></li>
+        <li><cite></cite><a href="password-change" target="rightFrame">修改密码</a><i></i></li>
+        </ul>    
+    </dd>
+        
+    
+    <dd>
+    <div class="title">
+    <span><img src="teacher/images/leftico02.png" /></span>论文与项目
+    </div>
+    <ul class="menuson">
+    	<li><cite></cite><a href="#" target="rightFrame">信息总览</a><i></i></li>
+        <li><cite></cite><a href="#" target="rightFrame">我的论文</a><i></i></li>
+        <li><cite></cite><a href="#" target="rightFrame">我的项目</a><i></i></li>
+        <li><cite></cite><a href="upload" target="rightFrame">上传文件</a><i></i></li>
+        </ul>
+    </dd> 
+    
+   
+    <dd><div class="title"><span><img src="teacher/images/leftico03.png" /></span>审核模块</div>
+    <ul class="menuson">
+        <li><cite></cite><a href="#">教师模块</a><i></i></li>
+        <li><cite></cite><a href="#">论文模块</a><i></i></li>
+        <li><cite></cite><a href="#">项目模块</a><i></i></li>
+    </ul>    
+    </dd>  
+    </dl>
+</body>
+</html>

@@ -56,6 +56,17 @@ public class FileServiceImpl implements FileService {
         return fileVoList;
     }
 
+    @Override
+    public void createFile(File file) {
+        fileMapper.insert(file);
+    }
+
+    @Override
+    public void createFileList(List<File> fileList) {
+        fileMapper.insertList(fileList);
+    }
+
+
     private FileVo copy(File file) {
         FileVo fileVo = new FileVo();
         fileVo.setId(file.getId());

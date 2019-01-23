@@ -45,4 +45,9 @@ public class ProjectUserServiceImpl implements ProjectUserService {
         pu.setState("1");
         return projectUserMapper.insert(pu);
     }
+
+    @Override
+    public void createPU(ProjectUser projectUser) {
+        projectUserMapper.insert(projectUser);
+    }
 }

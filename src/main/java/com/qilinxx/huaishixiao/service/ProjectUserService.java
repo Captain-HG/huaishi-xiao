@@ -1,5 +1,7 @@
 package com.qilinxx.huaishixiao.service;
 
+import com.qilinxx.huaishixiao.entity.ProjectUser;
+
 import java.util.List;
 
 public interface ProjectUserService {
@@ -29,4 +31,6 @@ public interface ProjectUserService {
      * @return
      */
     int insertPU(String pid, String name, String userId);
+    /**添加一个新的项目与用户关系*/
+    void createPU(ProjectUser projectUser);
 }

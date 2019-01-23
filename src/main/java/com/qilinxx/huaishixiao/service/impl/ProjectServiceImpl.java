@@ -1,6 +1,7 @@
 package com.qilinxx.huaishixiao.service.impl;
 
 import com.qilinxx.huaishixiao.entity.Project;
+import com.qilinxx.huaishixiao.entity.ProjectExample;
 import com.qilinxx.huaishixiao.entity.ProjectUser;
 import com.qilinxx.huaishixiao.mapper.ProjectMapper;
 import com.qilinxx.huaishixiao.mapper.ProjectUserMapper;
@@ -78,10 +79,23 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public int delte(String id) {
+    public int delete(String id) {
         Project project = projectMapper.selectByPrimaryKey(id);
         return  projectMapper.delete(project);
     }
+
+    @Override
+    public void createProject(Project project) {
+        projectMapper.insert(project);
+    }
+
+    @Override
+    public List<Project> findProjectByNameAndCreateId(String name, String createId) {
+        ProjectExample example=new ProjectExample();
+        example.createCriteria().andNameEqualTo(name).andCreaterIdEqualTo(createId);
+        return  projectMapper.selectByExample(example);
+    }
+
 
     /**
      * 封装

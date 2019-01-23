@@ -1,6 +1,7 @@
 package com.qilinxx.huaishixiao.service.impl;
 
 import com.qilinxx.huaishixiao.entity.User;
+import com.qilinxx.huaishixiao.entity.UserExample;
 import com.qilinxx.huaishixiao.mapper.UserMapper;
 import com.qilinxx.huaishixiao.service.UserRoleService;
 import com.qilinxx.huaishixiao.service.UserService;
@@ -86,6 +87,19 @@ public class UserServiceImpl implements UserService {
     public User selectByAccount(String account) {
         return  userMapper.selectByAccount(account);
     }
+
+    @Override
+    public void updatePassword(User user) {
+        userMapper.updateByPrimaryKeySelective(user);
+    }
+
+    @Override
+    public List<User> findUserByName(String name) {
+        UserExample example=new UserExample();
+        example.createCriteria().andNameEqualTo(name);
+        return userMapper.selectByExample(example);
+    }
+
 //
 //    @Override
 //    public List<UserVo> selectUserVoAll() {

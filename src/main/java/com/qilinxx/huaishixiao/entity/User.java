@@ -30,6 +30,25 @@ public class User {
 
     private Integer age;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "uid='" + uid + '\'' +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", type='" + type + '\'' +
+                ", account='" + account + '\'' +
+                ", ctime=" + ctime +
+                ", utime=" + utime +
+                ", state='" + state + '\'' +
+                ", remark='" + remark + '\'' +
+                ", title='" + title + '\'' +
+                ", des='" + des + '\'' +
+                ", belong='" + belong + '\'' +
+                ", age=" + age +
+                '}';
+    }
+
     public String getUid() {
         return uid;
     }

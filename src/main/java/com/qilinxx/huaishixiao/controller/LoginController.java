@@ -64,14 +64,12 @@ public class LoginController {
         }
         if(s.contains("3")){
             //跳转管理员页面
-             return "redirect:/";
+             return "redirect:";
+        }else {
+            return "redirect:/main";
         }
-        if(s.contains("2")){
-            //跳转教师页面，并有审核权限
-            session.setAttribute("rid","2");
-        }
-        return "redirect:/main";
     }
+
 
 
 }

@@ -19,5 +19,9 @@ public interface ProjectService {
     /** 增加项目，与参与者*/
     int addPU(Project project, String[] userIds);
     /** 根据id删除*/
-    int delte(String id);
+    int delete(String id);
+    /**添加一个新项目*/
+    void createProject(Project project);
+    /**通过名称和创建人id查找项目*/
+    List<Project> findProjectByNameAndCreateId(String name,String createId);
 }

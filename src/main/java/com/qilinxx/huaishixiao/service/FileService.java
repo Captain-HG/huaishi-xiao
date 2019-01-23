@@ -16,5 +16,8 @@ public interface FileService {
     int delete(String id);
     /** 查询所有的封装好的filevo,根据项目id*/
     List<FileVo> selectAllFileVoByPid(String pId);
-
+    /**创建新的文件记录*/
+    void createFile(File file);
+    /***/
+    void createFileList(List<File> fileList);
 }

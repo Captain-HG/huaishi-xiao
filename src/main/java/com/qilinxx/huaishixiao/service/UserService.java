@@ -1,7 +1,6 @@
 package com.qilinxx.huaishixiao.service;
 
 import com.qilinxx.huaishixiao.entity.User;
-import com.qilinxx.huaishixiao.vo.UserVo;
 
 import java.util.List;
 
@@ -26,6 +25,10 @@ public interface UserService {
     int addUserAndRole(User user, String roleId);
     /** 根据账号查询user*/
     User selectByAccount(String account);
+    /**修改密码*/
+    void updatePassword(User user);
+    /**根据姓名查找用户*/
+    List<User> findUserByName(String name);
 //    /** 查询封装过后的user*/
 //    List<UserVo> selectUserVoAll();
 }

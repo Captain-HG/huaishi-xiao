@@ -1,8 +1,6 @@
 package com.qilinxx.huaishixiao.controller.admin;
 
 import com.qilinxx.huaishixiao.entity.Project;
-import com.qilinxx.huaishixiao.entity.Role;
-
 import com.qilinxx.huaishixiao.entity.User;
 import com.qilinxx.huaishixiao.service.ProjectService;
 import com.qilinxx.huaishixiao.service.UserService;
@@ -118,6 +116,6 @@ public class ProjectContrller {
     @RequestMapping("admin-project-del")
     @ResponseBody
     public int delProject(String id) {
-        return projectService.delte(id);
+        return projectService.delete(id);
     }
 }
