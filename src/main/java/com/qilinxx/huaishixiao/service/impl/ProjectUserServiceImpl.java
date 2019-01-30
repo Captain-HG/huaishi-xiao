@@ -1,6 +1,7 @@
 package com.qilinxx.huaishixiao.service.impl;
 
 import com.qilinxx.huaishixiao.entity.ProjectUser;
+import com.qilinxx.huaishixiao.entity.ProjectUserExample;
 import com.qilinxx.huaishixiao.mapper.ProjectUserMapper;
 import com.qilinxx.huaishixiao.mapper.UserMapper;
 import com.qilinxx.huaishixiao.service.ProjectUserService;
@@ -50,4 +51,20 @@ public class ProjectUserServiceImpl implements ProjectUserService {
     public void createPU(ProjectUser projectUser) {
         projectUserMapper.insert(projectUser);
     }
+
+    @Override
+    public List<ProjectUser> findPUByUid(String uid) {
+        ProjectUserExample example=new ProjectUserExample();
+        example.createCriteria().andUserIdEqualTo(uid);
+        return projectUserMapper.selectByExample(example);
+    }
+
+    @Override
+    public void deletePUByPorjectId(String projectId) {
+        ProjectUserExample example=new ProjectUserExample();
+        example.createCriteria().andProjectIdEqualTo(projectId);
+        projectUserMapper.deleteByExample(example);
+    }
+
+
 }

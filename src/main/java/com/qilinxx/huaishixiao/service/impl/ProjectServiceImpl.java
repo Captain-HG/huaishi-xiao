@@ -44,15 +44,14 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public int startProject(String id) {
         Project project = projectMapper.selectByPrimaryKey(id);
-        project.setState("1");
+        project.setState("2");
         project.setUtime((long) DateKit.getCurrentUnixTime());
         return projectMapper.updateByPrimaryKeySelective(project);
     }
-
     @Override
     public int stopProject(String id) {
         Project project = projectMapper.selectByPrimaryKey(id);
-        project.setState("0");
+        project.setState("1");
         project.setUtime((long) DateKit.getCurrentUnixTime());
         return projectMapper.updateByPrimaryKeySelective(project);
     }
@@ -94,6 +93,13 @@ public class ProjectServiceImpl implements ProjectService {
         ProjectExample example=new ProjectExample();
         example.createCriteria().andNameEqualTo(name).andCreaterIdEqualTo(createId);
         return  projectMapper.selectByExample(example);
+    }
+
+    @Override
+    public List<Project> findProjectExceptCreateId(String createId) {
+        ProjectExample example=new ProjectExample();
+        example.createCriteria().andCreaterIdNotEqualTo(createId);
+        return projectMapper.selectByExample(example);
     }
 
 

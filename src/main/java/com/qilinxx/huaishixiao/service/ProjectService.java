@@ -24,4 +24,7 @@ public interface ProjectService {
     void createProject(Project project);
     /**通过名称和创建人id查找项目*/
     List<Project> findProjectByNameAndCreateId(String name,String createId);
+    /**查找除了此createId以外的所有项目 */
+    List<Project> findProjectExceptCreateId(String createId);
+
 }

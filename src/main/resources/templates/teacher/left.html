@@ -52,20 +52,17 @@ $(function(){
     <span><img src="teacher/images/leftico02.png" /></span>论文与项目
     </div>
     <ul class="menuson">
-    	<li><cite></cite><a href="#" target="rightFrame">信息总览</a><i></i></li>
-        <li><cite></cite><a href="#" target="rightFrame">我的论文</a><i></i></li>
-        <li><cite></cite><a href="#" target="rightFrame">我的项目</a><i></i></li>
+    	<li><cite></cite><a href="overview" target="rightFrame">信息总览</a><i></i></li>
         <li><cite></cite><a href="upload" target="rightFrame">上传文件</a><i></i></li>
         </ul>
     </dd> 
     
    
-    <dd><div class="title"><span><img src="teacher/images/leftico03.png" /></span>审核模块</div>
+    <dd th:if="${power}==2">
+        <div class="title"><span><img src="teacher/images/leftico03.png" /></span>审核模块</div>
     <ul class="menuson">
-        <li><cite></cite><a href="#">教师模块</a><i></i></li>
-        <li><cite></cite><a href="#">论文模块</a><i></i></li>
-        <li><cite></cite><a href="#">项目模块</a><i></i></li>
-    </ul>    
+        <li><cite></cite><a target="rightFrame" href="examination">信息审核</a><i></i></li>
+    </ul>
     </dd>  
     </dl>
 </body>

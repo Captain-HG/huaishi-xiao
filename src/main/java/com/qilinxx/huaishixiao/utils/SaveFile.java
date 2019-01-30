@@ -3,6 +3,8 @@ package com.qilinxx.huaishixiao.utils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -13,6 +15,7 @@ import java.util.List;
  */
 public class SaveFile {
     private static List<MultipartFile> fileList;
+    private static String fileId;
     /**
      * 先根遍历序递归删除文件夹
      *
@@ -35,9 +38,47 @@ public class SaveFile {
         }
         return dirFile.delete();
     }
+    /**获取文件的大小*/
+    public static String getFileSize(File file) {
+        if (file.exists() && file.isFile()) {
+            double sizeKB=(double)file.length()/1024d;
+            double sizeMB=(double)file.length()/1024d/1024d;
+            if(sizeMB<1){
+                if(sizeKB==0){
+                    return 0+"KB";
+                }
+                if(sizeKB>0&&sizeKB<1){
+                    return 1+"KB";
+                }
+                return (long)sizeKB+"KB";
+            }else {
+                return (long)sizeMB+"MB";
+            }
+
+        }
+        return "请输入文件！";
+    }
+    /**获取文件最后的修改时间*/
+    public static String getFileLastTime(File file){
+        if(file.exists() && file.isFile()){
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+            Calendar cal = Calendar.getInstance();
+            cal.setTimeInMillis(file.lastModified());
+            return sdf.format(cal.getTime());
+        }
+        return "请输入文件！";
+    }
     /**清空fileList*/
     public static void   clearFileList(){
         fileList.clear();
+    }
+
+    public static String getFileId() {
+        return fileId;
+    }
+
+    public static void setFileId(String fileId) {
+        SaveFile.fileId = fileId;
     }
     public static List<MultipartFile> getFileList() {
         return fileList;

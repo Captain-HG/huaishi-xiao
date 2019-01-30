@@ -18,6 +18,10 @@ public interface FileService {
     List<FileVo> selectAllFileVoByPid(String pId);
     /**创建新的文件记录*/
     void createFile(File file);
-    /***/
+    /**用一组list 文件集合 创建文件记录*/
     void createFileList(List<File> fileList);
+    /**根据项目的id删除  文件记录*/
+    void deleteFileByProjectId(String projectId);
+    /**根据项目id 查找出所有文件记录*/
+    List<File> findFileByProjectId(String projectId);
 }

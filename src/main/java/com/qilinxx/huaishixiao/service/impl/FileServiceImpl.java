@@ -1,6 +1,7 @@
 package com.qilinxx.huaishixiao.service.impl;
 
 import com.qilinxx.huaishixiao.entity.File;
+import com.qilinxx.huaishixiao.entity.FileExample;
 import com.qilinxx.huaishixiao.mapper.FileMapper;
 import com.qilinxx.huaishixiao.mapper.UserMapper;
 import com.qilinxx.huaishixiao.service.FileService;
@@ -64,6 +65,21 @@ public class FileServiceImpl implements FileService {
     @Override
     public void createFileList(List<File> fileList) {
         fileMapper.insertList(fileList);
+    }
+
+    @Override
+    public void deleteFileByProjectId(String projectId) {
+        FileExample example=new FileExample();
+        example.createCriteria().andProjectIdEqualTo(projectId);
+        fileMapper.deleteByExample(example);
+    }
+
+    @Override
+    public List<File> findFileByProjectId(String projectId) {
+        FileExample example=new FileExample();
+        example.createCriteria().andProjectIdEqualTo(projectId);
+        fileMapper.selectByExample(example);
+        return fileMapper.selectByExample(example);
     }
 
 

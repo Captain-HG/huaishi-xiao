@@ -33,4 +33,8 @@ public interface ProjectUserService {
     int insertPU(String pid, String name, String userId);
     /**添加一个新的项目与用户关系*/
     void createPU(ProjectUser projectUser);
+    /**根据用户id查找所有项目*/
+    List<ProjectUser> findPUByUid(String uid);
+    /**根据项目id删除 此项目和用户关系记录*/
+    void deletePUByPorjectId(String projectId);
 }

@@ -58,11 +58,11 @@ public class LoginController {
         }
         session.setAttribute("account",account);
         List<UserRole> userRoleList = userRoleService.findRidByUid(user.getUid());
-        String s="";
+        String power="";
         for (UserRole userRole:userRoleList){
-            s=s+userRole.getRid();
+            power=power+userRole.getRid();
         }
-        if(s.contains("3")){
+        if(power.contains("3")){
             //跳转管理员页面
              return "redirect:";
         }else {
