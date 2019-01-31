@@ -33,6 +33,7 @@ public class SaveFile {
         } else {
 
             for (File file : dirFile.listFiles()) {
+
                 deleteFile(file);
             }
         }
