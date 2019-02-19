@@ -47,7 +47,7 @@ public class TeacherController {
     @GetMapping({"main","1"})
     public String main(HttpSession session, Model model){
          //以下代码项目完成修改
-        session.setAttribute("account","18123456789");
+        //session.setAttribute("account","18123456789");  //张三 账号：20141201029
         //以上代码项目完成时修改
         return "teacher/main";
     }
@@ -67,6 +67,7 @@ public class TeacherController {
         }else {
            model.addAttribute("power","1") ;
         }
+        model.addAttribute("user",user);
         return "teacher/left";
     }
     /**
@@ -476,7 +477,7 @@ public class TeacherController {
     public void preview(HttpServletResponse response) {
         String fileId = SaveFile.getFileId();
         System.out.println(fileId);
-        File file = new File(UploadUtil.getUploadFilePath()+"\\upload\\b.pdf");
+        File file = new File(UploadUtil.getUploadFilePath()+"\\upload\\pdf.pdf");
         if (file.exists()){
             byte[] data = null;
             try {

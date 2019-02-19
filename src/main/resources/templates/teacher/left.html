@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
 <html  xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -34,36 +34,67 @@ $(function(){
     
     <dl class="leftmenu">
         
-    <dd>
-    <div class="title">
-    <span><img src="teacher/images/leftico01.png" /></span>管理信息
-    </div>
-    	<ul class="menuson">
-        <li class="active"><cite></cite><a href="index" target="rightFrame">系统首页</a><i></i></li>
-        <li><cite></cite><a href="info" target="rightFrame">个人信息</a><i></i></li>
-        <li><cite></cite><a href="info-change" target="rightFrame">修改信息</a><i></i></li>
-        <li><cite></cite><a href="password-change" target="rightFrame">修改密码</a><i></i></li>
-        </ul>    
-    </dd>
-        
-    
-    <dd>
-    <div class="title">
-    <span><img src="teacher/images/leftico02.png" /></span>论文与项目
-    </div>
-    <ul class="menuson">
-    	<li><cite></cite><a href="overview" target="rightFrame">信息总览</a><i></i></li>
-        <li><cite></cite><a href="upload" target="rightFrame">上传文件</a><i></i></li>
-        </ul>
-    </dd> 
-    
-   
-    <dd th:if="${power}==2">
-        <div class="title"><span><img src="teacher/images/leftico03.png" /></span>审核模块</div>
-    <ul class="menuson">
-        <li><cite></cite><a target="rightFrame" href="examination">信息审核</a><i></i></li>
-    </ul>
-    </dd>  
+            <dd>
+                <div class="title">
+                <span><img src="teacher/images/leftico01.png" /></span>管理信息
+                </div>
+                <ul class="menuson">
+                    <li class="active"><cite></cite><a href="index" target="rightFrame">系统首页</a><i></i></li>
+                    <li><cite></cite><a href="info" target="rightFrame">个人信息</a><i></i></li>
+                    <li><cite></cite><a href="info-change" target="rightFrame">修改信息</a><i></i></li>
+                    <li><cite></cite><a href="password-change" target="rightFrame">修改密码</a><i></i></li>
+                </ul>
+            </dd>
+        <!--正常使用-->
+        <!--th:if="${user.type}==1"-->
+            <dd >
+                <div class="title">
+                <span><img src="teacher/images/leftico02.png" /></span>论文与项目
+                </div>
+                <ul class="menuson" >
+                    <li><cite></cite><a href="overview" target="rightFrame">信息总览</a><i></i></li>
+                    <li><cite></cite><a href="upload" target="rightFrame">上传文件</a><i></i></li>
+                </ul>
+                <ul class="menuson" >
+                        <li><cite></cite><a href="overview" target="rightFrame">信息总览</a><i></i></li>
+                        <li><cite></cite><a href="upload" target="rightFrame">上传文件</a><i></i></li>
+                </ul>
+            </dd>
+        <!--&lt;!&ndash;首次登录&ndash;&gt;-->
+            <!--<dd th:if="${user.type}==0 && ${user.utime}==null">-->
+                <!--<div class="title">-->
+                    <!--<span><img src="teacher/images/leftico02.png" /></span>论文与项目-->
+                <!--</div>-->
+                <!--<ul class="menuson" >-->
+                    <!--<li><cite></cite><a href="overview" target="rightFrame">信息总览</a><i></i></li>-->
+                    <!--<li><cite></cite><a href="upload" target="rightFrame">上传文件</a><i></i></li>-->
+                <!--</ul>-->
+                <!--<ul class="menuson" >-->
+                    <!--<li><cite></cite><a href="overview" target="rightFrame">信息总览</a><i></i></li>-->
+                    <!--<li><cite></cite><a href="upload" target="rightFrame">上传文件</a><i></i></li>-->
+                <!--</ul>-->
+            <!--</dd>-->
+
+        <!--&lt;!&ndash;非首次登录，非正常使用&ndash;&gt;-->
+            <!--<dd th:if="${user.type}==0&&${user.utime}!=null">-->
+                <!--<div class="title">-->
+                    <!--<span><img src="teacher/images/leftico02.png" /></span>论文与项目-->
+                <!--</div>-->
+                <!--<ul class="menuson" >-->
+                    <!--<li><cite></cite><a href="overview" target="rightFrame">信息总览</a><i></i></li>-->
+                    <!--<li><cite></cite><a href="upload" target="rightFrame">上传文件</a><i></i></li>-->
+                <!--</ul>-->
+                <!--<ul class="menuson" >-->
+                    <!--<li><cite></cite><a href="overview" target="rightFrame">信息总览</a><i></i></li>-->
+                    <!--<li><cite></cite><a href="upload" target="rightFrame">上传文件</a><i></i></li>-->
+                <!--</ul>-->
+            <!--</dd>-->
+            <dd th:if="${power}==2">
+                <div class="title"><span><img src="teacher/images/leftico03.png" /></span>审核模块</div>
+                <ul class="menuson">
+                    <li><cite></cite><a target="rightFrame" href="examination">信息审核</a><i></i></li>
+                </ul>
+            </dd>
     </dl>
 </body>
 </html>

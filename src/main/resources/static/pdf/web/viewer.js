@@ -10095,6 +10095,11 @@ var PDFPageView = function () {
         textLayerDiv.className = 'textLayer';
         textLayerDiv.style.width = canvasWrapper.style.width;
         textLayerDiv.style.height = canvasWrapper.style.height;
+
+        //以下是水印内容
+
+
+        //以上是水印内容
         if (this.annotationLayer && this.annotationLayer.div) {
           div.insertBefore(textLayerDiv, this.annotationLayer.div);
         } else {
